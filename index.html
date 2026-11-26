@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radical Transparency — Linkset Usage Patterns (RT-P01 to RT-P10)</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <style>
+    section img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1.25rem auto;
+    }
+    pre {
+      overflow-x: auto;
+    }
+    @media print {
+      section[id^="rt-p"] {
+        break-before: page;
+      }
+    }
+  </style>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" async></script>
+  <script class="remove">
+    const PATTERN_ID_MAP = {
+      "rt-patterns-overview.md": "#overview",
+      "rt-p01-profile-declaration.md": "#rt-p01",
+      "rt-p02-profile-composition.md": "#rt-p02",
+      "rt-p03-content-negotiation-menu.md": "#rt-p03",
+      "rt-p04-no-landing-page-solution.md": "#rt-p04",
+      "rt-p05-subsetting-api.md": "#rt-p05",
+      "rt-p06-hostwide-discovery.md": "#rt-p06",
+      "rt-p07-catalog-assistance.md": "#rt-p07",
+      "rt-p08-large-linksets.md": "#rt-p08",
+      "rt-p09-release-links.md": "#rt-p09",
+      "rt-p10-detached-local-storage.md": "#rt-p10"
+    };
+
+    function rewriteInternalPatternLinks() {
+      document.querySelectorAll("a[href]").forEach((anchor) => {
+        const href = anchor.getAttribute("href");
+        if (!href) return;
+        const clean = href.replace(/^\.\//, "");
+        const [file, frag] = clean.split("#");
+        if (PATTERN_ID_MAP[file]) {
+          anchor.setAttribute("href", PATTERN_ID_MAP[file]);
+        } else if (frag && PATTERN_ID_MAP[frag]) {
+          anchor.setAttribute("href", PATTERN_ID_MAP[frag]);
+        }
+      });
+    }
+
+    var respecConfig = {
+      specStatus: "unofficial",
+      shortName: "rt-linkset-usage-patterns",
+      subtitle: "Foundational Web-Linking Patterns for the Declare Layer (RT-P01 to RT-P10)",
+      github: "radical-transparency-net/spec-linkset-usage-patterns",
+      logos: [
+        {
+          src: "assets/rt-logo.svg",
+          alt: "Radical Transparency Network",
+          url: "https://radical-transparency.net/",
+          width: 72,
+          height: 72
+        }
+      ],
+      editors: [
+        {
+          name: "Marc Portier",
+          orcid: "0000-0002-9648-6484",
+          company: "Flanders Marine Institute (VLIZ)",
+          companyURL: "https://www.vliz.be/"
+        },
+        {
+          name: "Cedric Decruw",
+          orcid: "0000-0001-6387-5988",
+          company: "Flanders Marine Institute (VLIZ)",
+          companyURL: "https://www.vliz.be/"
+        }
+      ],
+      lint: {
+        "no-unused-dfns": false,
+        "check-punctuation": false
+      },
+      postProcess: [rewriteInternalPatternLinks]
+    };
+  </script>
+</head>
+<body>
+  <section id="abstract">
+    <p>
+      This specification defines ten interlocking Web-Linking and RFC 9264 Linkset usage patterns (<strong>RT-P01</strong> through <strong>RT-P10</strong>) that formalize the foundational <em>Declare</em> layer of the Radical Transparency interoperability architecture. Building strictly on mature IETF, W3C, IANA, and OAI standards, these patterns enable digital resources, APIs, catalogs, and local files to declare profile conformity, available representations, persistent identity, and structural relationships in a machine-actionable way.
+    </p>
+  </section>
+
+  <section id="sotd">
+    <p>
+      This is an unofficial community working draft maintained by the <a href="https://radical-transparency.net/">Radical Transparency Network</a> at the Flanders Marine Institute (VLIZ). Feedback, cross-standard alignment notes (OGC, CODATA/CDIF, EOSC, FAIR Signposting), and pull requests are welcomed via the <a href="https://github.com/radical-transparency-net/spec-linkset-usage-patterns">GitHub repository</a>.
+    </p>
+    <p>
+      The companion RDF reification vocabulary referenced in <a href="#the-semantic-bridge-linksets-vs-rdf-triples">The Semantic Bridge</a> (<code>rtwl:</code>) is maintained in <a href="https://github.com/radical-transparency-net/semantic-assets">radical-transparency-net/semantic-assets</a>.
+    </p>
+  </section>
+
+  <section id="overview" data-include="rt-patterns-overview.md" data-include-format="markdown"></section>
+
+  <section id="patterns">
+    <h2>Pattern Catalogue (RT-P01 to RT-P10)</h2>
+
+    <section id="rt-p01" data-include="rt-p01-profile-declaration.md" data-include-format="markdown"></section>
+    <section id="rt-p02" data-include="rt-p02-profile-composition.md" data-include-format="markdown"></section>
+    <section id="rt-p03" data-include="rt-p03-content-negotiation-menu.md" data-include-format="markdown"></section>
+    <section id="rt-p04" data-include="rt-p04-no-landing-page-solution.md" data-include-format="markdown"></section>
+    <section id="rt-p05" data-include="rt-p05-subsetting-api.md" data-include-format="markdown"></section>
+    <section id="rt-p06" data-include="rt-p06-hostwide-discovery.md" data-include-format="markdown"></section>
+    <section id="rt-p07" data-include="rt-p07-catalog-assistance.md" data-include-format="markdown"></section>
+    <section id="rt-p08" data-include="rt-p08-large-linksets.md" data-include-format="markdown"></section>
+    <section id="rt-p09" data-include="rt-p09-release-links.md" data-include-format="markdown"></section>
+    <section id="rt-p10" data-include="rt-p10-detached-local-storage.md" data-include-format="markdown"></section>
+  </section>
+</body>
+</html>
