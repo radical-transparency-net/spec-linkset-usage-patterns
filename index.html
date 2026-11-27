@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,15 +13,18 @@
       display: block;
       margin: 1.25rem auto;
     }
+
     pre {
       overflow-x: auto;
     }
+
     body.darkmode .head p.logos img,
     body.darkmode .head a.logo img,
     body.darkmode .head img[src$="rt-logo.svg"] {
       background: transparent;
       filter: invert(1);
     }
+
     @media print {
       section[id^="rt-p"] {
         break-before: page;
@@ -93,23 +97,60 @@
     };
   </script>
 </head>
+
 <body>
   <section id="abstract">
     <p>
-      This specification defines ten interlocking Web-Linking and RFC 9264 Linkset usage patterns (<strong>RT-P01</strong> through <strong>RT-P10</strong>) that formalize the foundational <em>Declare</em> layer of the Radical Transparency interoperability architecture. Building strictly on mature IETF, W3C, IANA, and OAI standards, these patterns enable digital resources, APIs, catalogs, and local files to declare profile conformity, available representations, persistent identity, and structural relationships in a machine-actionable way.
+      This specification defines ten interlocking Web-Linking and RFC 9264 Linkset usage patterns
+      (<strong>RT-P01</strong> through <strong>RT-P10</strong>) that formalize the foundational <em>Declare</em> layer
+      of the Radical Transparency interoperability architecture. Building strictly on mature IETF, W3C, IANA, and OAI
+      standards, these patterns enable digital resources, APIs, catalogs, and local files to declare profile conformity,
+      available representations, persistent identity, and structural relationships in a machine-actionable way.
     </p>
   </section>
 
   <section id="sotd">
     <p>
-      This is an unofficial community working draft maintained by the <a href="https://radical-transparency.net/">Radical Transparency Network</a> at the Flanders Marine Institute (VLIZ). Feedback, cross-standard alignment notes (OGC, CODATA/CDIF, EOSC, FAIR Signposting), and pull requests are welcomed via the <a href="https://github.com/radical-transparency-net/spec-linkset-usage-patterns">GitHub repository</a>.
+      This is an unofficial community working draft maintained by the <a
+        href="https://radical-transparency.net/">Radical Transparency Network</a> at the Flanders Marine Institute
+      (VLIZ). Feedback, cross-standard alignment notes (OGC, CODATA/CDIF, EOSC, FAIR Signposting), and pull requests are
+      welcomed via the <a href="https://github.com/radical-transparency-net/spec-linkset-usage-patterns">GitHub
+        repository</a>.
     </p>
     <p>
-      The companion RDF reification vocabulary referenced in <a href="#the-semantic-bridge-linksets-vs-rdf-triples">The Semantic Bridge</a> (<code>rtwl:</code>) is maintained in <a href="https://github.com/radical-transparency-net/semantic-assets">radical-transparency-net/semantic-assets</a>.
+      The companion RDF reification vocabulary referenced in <a href="#the-semantic-bridge-linksets-vs-rdf-triples">The
+        Semantic Bridge</a> (<code>rtwl:</code>) is maintained in <a
+        href="https://github.com/radical-transparency-net/semantic-assets">radical-transparency-net/semantic-assets</a>.
     </p>
   </section>
 
-  <section id="overview" data-include="rt-patterns-overview.md" data-include-format="markdown"></section>
+  <section id="overview" class="informative" data-include="rt-patterns-overview.md" data-include-format="markdown">
+  </section>
+
+  <section id="conformance">
+    <p>
+      The usage patterns in this specification (<strong>RT-P01</strong> through <strong>RT-P10</strong>) are modular and
+      independently adoptable according to architectural role (for example, <strong>RT-P05</strong> applies to
+      subsetting APIs, <strong>RT-P07</strong> to federated catalogs, and <strong>RT-P10</strong> to detached local
+      storage). An implementation claims conformance on a per-pattern basis by satisfying all applicable normative
+      requirements of each pattern it adopts, as declared via <strong>RT-P01</strong>.
+    </p>
+    <p>
+      Normative requirements in this specification apply across two distinct conformance classes:
+    </p>
+    <ul>
+      <li>
+        <strong>Providers (Publishers):</strong> HTTP servers, APIs, catalogs, and local-storage packagers emitting HTTP
+        <code>Link</code> headers, RFC 9264 linksets, <code>api-catalog</code> documents, or ResourceSync-augmented
+        sitemaps. Providers follow conservative serialization rules to enable deterministic machine validation.
+      </li>
+      <li>
+        <strong>Consumers (Machine Agents):</strong> Crawlers, harvesters, validators, and client applications resolving
+        <code>rel="profile"</code> declarations, recursive <code>schema:hasPart</code> chains, and linksets. Consumers
+        support documented interoperability variants as specified by each adopted pattern.
+      </li>
+    </ul>
+  </section>
 
   <section id="patterns">
     <h2>Pattern Catalogue (RT-P01 to RT-P10)</h2>
@@ -126,4 +167,5 @@
     <section id="rt-p10" data-include="rt-p10-detached-local-storage.md" data-include-format="markdown"></section>
   </section>
 </body>
+
 </html>
