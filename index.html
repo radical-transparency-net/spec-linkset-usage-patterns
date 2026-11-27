@@ -15,6 +15,12 @@
     pre {
       overflow-x: auto;
     }
+    body.darkmode .head p.logos img,
+    body.darkmode .head a.logo img,
+    body.darkmode .head img[src$="rt-logo.svg"] {
+      background: transparent;
+      filter: invert(1);
+    }
     @media print {
       section[id^="rt-p"] {
         break-before: page;
