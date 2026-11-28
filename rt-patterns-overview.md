@@ -139,6 +139,17 @@ Instead, while [RFC 9264][RFC 9264] (Appendix A) illustrates JSON-LD lifting wit
 
 This is a factual representation of the observed link relations in the wild. Depending on the use case, application, or higher-level business logic, this basic representation can be reasoned upon to derive more complex equivalences.
 
+#### Note on JSON-LD `@context` and RFC 9264 Linksets
+
+Alongside the `rtwl:` vocabulary at `https://w3id.org/rt/ns/weblink`, an official JSON-LD 1.1 `@context` is published at `https://w3id.org/rt/ns/weblink.context.jsonld` for serializing **reified `rtwl:WebLink` and `rtwl:Linkset` observations** as `application/ld+json`.
+
+Note that Radical Transparency intentionally does **not** attach `Link: <...>; rel="http://www.w3.org/ns/json-ld#context"` to raw RFC 9264 `application/linkset+json` responses to produce `rtwl:` triples directly:
+
+* **Key-to-predicate limitation:** JSON-LD 1.1 `@context` maps JSON object keys strictly to RDF predicates and cannot reify key names (`"alternate"`, `"type"`, `"profile"`) into `rtwl:rel` values or `rtwl:TargetAttribute` (`rtwl:key`/`rtwl:value`) blank nodes.
+* **Multi-level key collisions:** RFC 9264 reuses identical key names across nesting levels (`"linkset"` as both the root wrapper and a link relation; `"profile"` as both a link relation and a target attribute) alongside open extension relation IRIs and `"title*"` language arrays. Applying a generic JSON-LD `@context` directly to `application/linkset+json` (as illustrated in [RFC 9264] Appendix A) either collapses back into the direct triple (`⟨anchor⟩ ⟨rel⟩ ⟨target⟩`) discouraged above or introduces an incompatible intermediate RDF shape.
+
+Raw `application/linkset+json` therefore remains a pure Layer-7 wire format, while lossless lifting into `rtwl:` RDF (serialized as Turtle or JSON-LD with `weblink.context.jsonld`) is handled by a deterministic linkset parser/mapper.
+
 ### Spontaneous Equivalence & Reasoning
 
 Specifically in relation to our own proposed patterns, here are a number of equivalences we have defined:
